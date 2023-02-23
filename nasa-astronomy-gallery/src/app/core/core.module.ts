@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ScrollDirective } from './navbar/directives/scroll.directive';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { ScrollDirective } from './navbar/directives/scroll.directive';
     ScrollDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   exports: [NavbarComponent]
 })

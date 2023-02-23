@@ -1,1 +1,7 @@
-<h1 style="color: white">HEELO</h1>
+<div class="container-fluid bg-red text-white">
+  <h1 class="text-center">Picture of the Day</h1>
+  <div class="alert alert-danger" role="alert" *ngIf="showAlert && httpErrorResponse">
+    {{ httpErrorResponse.message }} <a (click)="retry()" class="alert-link pointer">Retry</a>
+  </div>
+</div>
+
