@@ -2,7 +2,7 @@
   <div class="alert alert-danger" role="alert" *ngIf="showAlert && httpErrorResponse">
     {{ httpErrorResponse.message }} <a (click)="retry()" class="alert-link pointer">Retry</a>
   </div>
-  <div *ngIf="dailyPicture">
+  <div *ngIf="dailyPicture else loading">
     <h1 class="text-center">{{ dailyPicture.title }}</h1>
     <div class="d-flex justify-content-center">
       <span class="badge badge-primary badge-pill">By: {{ dailyPicture.copyright }}</span>
@@ -21,5 +21,9 @@
 
     </div>
   </div>
+
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
 </div>
 
