@@ -1,7 +1,25 @@
 <div class="container-fluid bg-red text-white">
-  <h1 class="text-center">Picture of the Day</h1>
   <div class="alert alert-danger" role="alert" *ngIf="showAlert && httpErrorResponse">
     {{ httpErrorResponse.message }} <a (click)="retry()" class="alert-link pointer">Retry</a>
+  </div>
+  <div *ngIf="dailyPicture">
+    <h1 class="text-center">{{ dailyPicture.title }}</h1>
+    <div class="d-flex justify-content-center">
+      <span class="badge badge-primary badge-pill">By: {{ dailyPicture.copyright }}</span>
+      <span class="badge badge-info badge-pill ml-3">Date: {{ dailyPicture.date | date: 'd/MM/yyyy'}}</span>
+    </div>
+    <div class="d-flex mt-3 mb-3">
+      <img class="m-auto rounded h-75" [src]="dailyPicture.url" [alt]="dailyPicture.title">
+    </div>
+    <div class="container">
+      <h2>Explanation</h2>
+      <p class="text-white">
+        {{ dailyPicture.explanation }}
+      </p>
+    </div>
+    <div class="d-flex justify-content-center">
+
+    </div>
   </div>
 </div>
 
