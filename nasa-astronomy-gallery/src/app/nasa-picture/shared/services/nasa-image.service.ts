@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { NasaImage } from '../models/nasa.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,5 +9,10 @@ import { HttpClient } from '@angular/common/http';
 export class NasaImageService {
   private readonly apiUrl = `https://images-api.nasa.gov`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
+  onGetSearchImage(params: HttpParams): Observable<NasaImage> {
+    return this.http.get<NasaImage>(this.apiUrl + '/search', {params: params})
+  }
 }
