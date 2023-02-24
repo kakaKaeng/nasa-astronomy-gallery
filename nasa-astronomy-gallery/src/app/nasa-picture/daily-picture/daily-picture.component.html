@@ -1,4 +1,4 @@
-<div class="container-fluid bg-red text-white">
+<div class="container-fluid text-white">
   <div class="alert alert-danger" role="alert" *ngIf="showAlert && httpErrorResponse">
     {{ httpErrorResponse.message }} <a (click)="retry()" class="alert-link pointer">Retry</a>
   </div>

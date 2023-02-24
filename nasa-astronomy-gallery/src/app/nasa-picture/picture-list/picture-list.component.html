@@ -1,1 +1,13 @@
-<p>picture-list works!</p>
+<div class="container-fluid text-white">
+  <div class="d-flex justify-content-center">
+    <input class="input-search" type="text" [(ngModel)]="searchText" (input)="onSearch()" placeholder="Search">
+  </div>
+
+  <div *ngIf="!isLoading else loading">
+
+  </div>
+
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+</div>
