@@ -9,7 +9,7 @@
       <span class="badge badge-info badge-pill ml-3">Date: {{ dailyPicture.date | date: 'd/MM/yyyy'}}</span>
     </div>
     <div class="d-flex mt-3 mb-3">
-      <img class="m-auto rounded h-75" [src]="dailyPicture.url" [alt]="dailyPicture.title">
+      <img class="m-auto rounded h-75" [defaultImage]="'../assets/undraw_season_change.svg'" [lazyLoad]="dailyPicture.url" [alt]="dailyPicture.title">
     </div>
     <div class="container">
       <h2>Explanation</h2>
@@ -18,7 +18,6 @@
       </p>
     </div>
     <div class="d-flex justify-content-center">
-
     </div>
   </div>
 

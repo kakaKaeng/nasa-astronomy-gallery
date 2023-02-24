@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NasaPictureRoutingModule } from './nasa-picture-routing.module';
 import { DailyPictureComponent } from './daily-picture/daily-picture.component';
 import { SharedModule } from '../shared/shared.module';
+import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
 
 
 @NgModule({
@@ -13,7 +14,11 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     NasaPictureRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    LazyLoadImageModule
+  ],
+  providers: [{provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks}],
+
 })
-export class NasaPictureModule { }
+export class NasaPictureModule {
+}
