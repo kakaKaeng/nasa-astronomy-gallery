@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NasaImageService } from '../shared/services/nasa-image.service';
 import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
@@ -9,10 +9,10 @@ import { NasaImage } from '../shared/models/nasa.model';
   templateUrl: './picture-list.component.html',
   styleUrls: ['./picture-list.component.scss']
 })
-export class PictureListComponent implements OnInit {
+export class PictureListComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
-  nasaImage?: NasaImage;
+  nasaImage?: NasaImage | null;
   nasaImage$ = new Subject<HttpParams>();
   searchText = '';
   isLoading = false;
@@ -22,6 +22,12 @@ export class PictureListComponent implements OnInit {
 
   ngOnInit() {
     this.subscriptionSearch();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   subscriptionSearch(): void {
@@ -47,8 +53,11 @@ export class PictureListComponent implements OnInit {
 
   onSearch() {
     this.isLoading = true;
-    const params =  new HttpParams()
-      .append('q', this.searchText);
+    this.nasaImage = null;
+    const params_object = {
+      q: this.searchText
+    };
+    const params = new HttpParams({ fromObject:  params_object})
     this.nasaImage$.next(params);
   }
 }
