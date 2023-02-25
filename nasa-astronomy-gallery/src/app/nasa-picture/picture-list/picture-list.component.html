@@ -9,7 +9,36 @@
   </div>
 
   <div *ngIf="!isLoading else loading">
-
+    <div class="d-flex flex-wrap gallery" *ngIf="nasaImage">
+      <div class="image-box" *ngFor="let image of nasaImage.collection.items">
+        <img
+          [defaultImage]="'../assets/undraw_season_change_small.svg'"
+          [lazyLoad]="image.links[0].href"
+          alt="{{image.links[0].href}}"
+          class="image">
+        <div class="description-box p-2">
+          <div *ngIf="image.data else noData">
+            <h6>
+              {{ image.data[0].title }}
+            </h6>
+            <div class="d-flex flex-wrap" style="gap: .2rem">
+              <span class="badge badge-secondary" *ngFor="let keyword of image.data[0].keywords">
+                {{ keyword }}
+              </span>
+            </div>
+            <h6 class="mt-2">
+              By: {{ image.data[0].photographer || image.data[0].secondary_creator || '-'}}
+            </h6>
+            <h6 class="">
+              Date: {{ image.data[0].date_created | date: 'd/MM/yyyy'}}
+            </h6>
+          </div>
+          <ng-template #noData>
+            <p>no description</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
 
   <ng-template #loading>

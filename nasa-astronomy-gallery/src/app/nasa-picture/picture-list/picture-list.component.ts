@@ -55,7 +55,8 @@ export class PictureListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.nasaImage = null;
     const params_object = {
-      q: this.searchText
+      q: this.searchText,
+      media_type: 'image'
     };
     const params = new HttpParams({ fromObject:  params_object})
     this.nasaImage$.next(params);
