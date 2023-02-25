@@ -4,7 +4,7 @@
   </div>
   <div class="d-flex justify-content-center mb-4" *ngIf="nasaImage">
     <span class="badge badge-info badge-pill">
-      Found: {{ nasaImage.collection.metadata.total_hits }}
+      Found: {{ totalItems }}
     </span>
   </div>
 
@@ -38,6 +38,16 @@
           </ng-template>
         </div>
       </div>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="nasaImage">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="currentPage"
+        [pageSize]="pageSize"
+        [maxSize]="10"
+        [rotate]="true"
+        (pageChange)="onPageChange($event)">
+      </ngb-pagination>
     </div>
   </div>
 

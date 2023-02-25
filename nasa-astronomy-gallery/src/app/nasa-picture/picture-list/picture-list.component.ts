@@ -17,6 +17,11 @@ export class PictureListComponent implements OnInit, OnDestroy {
   searchText = '';
   isLoading = false;
 
+  totalItems = 0;
+  currentPage = 1;
+  pageSize = 100;
+  pageCount = Math.ceil(this.totalItems / this.pageSize);
+
   constructor(private nasaImageService: NasaImageService) {
   }
 
@@ -42,6 +47,7 @@ export class PictureListComponent implements OnInit, OnDestroy {
           next: (response) => {
             this.isLoading = false;
             this.nasaImage = response;
+            this.totalItems = response.collection.metadata.total_hits;
           },
           error: (err) => {
             this.isLoading = false;
@@ -57,6 +63,19 @@ export class PictureListComponent implements OnInit, OnDestroy {
     const params_object = {
       q: this.searchText,
       media_type: 'image'
+    };
+    const params = new HttpParams({ fromObject:  params_object})
+    this.nasaImage$.next(params);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.isLoading = true;
+    this.nasaImage = null;
+    const params_object = {
+      q: this.searchText,
+      media_type: 'image',
+      page: this.currentPage
     };
     const params = new HttpParams({ fromObject:  params_object})
     this.nasaImage$.next(params);

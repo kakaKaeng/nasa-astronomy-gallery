@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
 import { PictureListComponent } from './picture-list/picture-list.component';
 import { FormsModule } from '@angular/forms';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     NasaPictureRoutingModule,
     SharedModule,
     LazyLoadImageModule,
-    FormsModule
+    FormsModule,
+    NgbPagination
   ],
   providers: [{provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks}],
 

@@ -1,3 +1,5 @@
+@import 'bootstrap/scss/bootstrap';
+
 @font-face {
   font-family: 'Kanit';
   src: url('fonts/Kanit-Regular.ttf') format('truetype');
@@ -15,6 +17,3 @@ body {
 .pointer {
   cursor: pointer;
 }
-
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
